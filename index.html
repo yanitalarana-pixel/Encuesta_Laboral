@@ -9,30 +9,47 @@
 </head>
 <body>
     <main class="container">
-        <header class="fade-in">
-            <h1>Encuesta de Liderazgo, Desempeño y Clima</h1>
-            <span class="badge">Confidencial – Uso interno</span>
-            <p class="instructions">
-                Lee cada afirmación y selecciona la calificación que mejor represente tu experiencia. Responde con honestidad y objetividad. Este instrumento busca exclusivamente identificar oportunidades de mejora.
-            </p>
-            <div class="scale-legend">
-                <span><strong>1</strong> = En desacuerdo</span>
-                <span><strong>3</strong> = Neutral</span>
-                <span><strong>5</strong> = De acuerdo</span>
-                <span><strong>N/A</strong> = No aplica</span>
+        <!-- PANTALLA DE ACCESO POR CÓDIGO -->
+        <div id="access-gate" class="access-card fade-in">
+            <h2>Acceso a la Evaluación</h2>
+            <p>Ingresa el código proporcionado por el área organizadora para habilitar tu cuestionario confidencial.</p>
+            <div class="access-form">
+                <input type="text" id="access-code-input" placeholder="Ej. VENTAS26" autocomplete="off">
+                <button type="button" id="btn-validate-code">Ingresar</button>
             </div>
-        </header>
+            <p id="code-error" class="hidden">Código no reconocido. Verifica con el encargado.</p>
+        </div>
 
-       <form id="survey-form" action="https://formspree.io/f/mvkkjejn" method="POST">
-    <div id="survey-content"></div>
-    
-    <div class="submit-section fade-in">
-        <p id="error-msg" class="hidden">Por favor, responde todas las preguntas antes de enviar.</p>
-        <button type="submit" id="submit-btn">Enviar Respuestas Anónimas</button>
-    </div>
-</form>
-</main>
-<script src="script.js"></script>
+        <!-- CONTENIDO DE LA ENCUESTA (Oculto al inicio) -->
+        <div id="survey-wrapper" class="hidden">
+            <header class="fade-in">
+                <h1>Encuesta de Liderazgo, Desempeño y Clima</h1>
+                <span class="badge">Confidencial – Uso interno</span>
+                <p id="area-indicator" class="area-tag"></p>
+                <p class="instructions">
+                    Lee cada afirmación y selecciona la calificación que mejor represente tu experiencia. Responde con honestidad y objetividad. Este instrumento busca exclusivamente identificar oportunidades de mejora.
+                </p>
+                <div class="scale-legend">
+                    <span><strong>1</strong> = En desacuerdo</span>
+                    <span><strong>3</strong> = Neutral</span>
+                    <span><strong>5</strong> = De acuerdo</span>
+                    <span><strong>N/A</strong> = No aplica</span>
+                </div>
+            </header>
+
+            <form id="survey-form" action="https://formspree.io/f/mvkkjejn" method="POST">
+                <!-- Campo invisible que envía el área automáticamente a tu Formspree -->
+                <input type="hidden" id="department-input" name="Area_Departamento" value="">
+                
+                <div id="survey-content"></div>
+                
+                <div class="submit-section fade-in">
+                    <p id="error-msg" class="hidden">Por favor, responde todas las preguntas antes de enviar.</p>
+                    <button type="submit" id="submit-btn">Enviar Respuestas Anónimas</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
-</html>            
-            
+</html>
